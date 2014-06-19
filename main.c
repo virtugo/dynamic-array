@@ -14,8 +14,8 @@ int main()
 {
     // динамический массив
     int **dynWorld;
-    int dynXM = 100; //30
-    int dynYM = 20; //20
+    int dynXM = 100;
+    int dynYM = 20;
     // статический массив
     int stWorld[SIZEX][SIZEY];
     // задаем сдвиг по X (можно поиграть с этим числом для наглядности)
