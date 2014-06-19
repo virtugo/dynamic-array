@@ -1,14 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int *massiv(int, int, int**);
+#define SIZEX 30// размеры массива для вывода на экран
+#define SIZEY 20
+
+int *FillArray(int, int, int**); // заполняет массив
+int *ClearMemory(int, int, int**); // очищаем память
 
 int main()
 {
-    // инициализируем массив
+
+    // динамический массив
     int **dynWorld;
-    int dynXM = 10; //50
-	int dynYM = 5; //20
+    int dynXM = 100; //30
+	int dynYM = 20; //20
+	// статический массив
+	int stWorld[SIZEX][SIZEY];
+
+	int sdvig=0;
+
 	int i,j;
 	// Выделяем память под адреса столбцов
 	// важно сначала выделить под иксы, потом под игреки,
@@ -19,25 +29,35 @@ int main()
 	// опираясь на кол-во элементов (y-ков)
 	for(i=0;i<dynXM;i++)dynWorld[i]=(int *)malloc(sizeof(int)*dynYM);
 
-	massiv(dynXM, dynYM, dynWorld);
+	FillArray(dynXM, dynYM, dynWorld);
 
-    // выводим на экран
+	// передаем часть динамического массива в статический
+	// задаем сдвиг по X (можно поиграть с этим числом для наглядности)
+    sdvig=4;
+
 	for(j=0;j<dynYM;j++){
-        for(i=0;i<dynXM;i++){
-            printf("%d ", dynWorld[i][j]);
+        for(i=sdvig;i<SIZEX+sdvig;i++){
+            stWorld[i-sdvig][j]=dynWorld[i][j];
+        }
+	}
+
+    // выводим на экран статический массив
+
+	for(j=0;j<SIZEY;j++){
+        for(i=0;i<SIZEX;i++){
+            printf("%d ", stWorld[i][j]);
         }
         printf("\n");
 	}
 
     // освобождаем память
-    for(i=0;i<dynXM;i++)free(dynWorld[i]);
-    free((void *)dynWorld);
+    ClearMemory(dynXM, dynYM, dynWorld);
 
     return 0;
 }
 
-int *massiv(int XM, int YM, int **dynWorld){
-
+int *FillArray(int XM, int YM, int **dynWorld)
+{
 	int i,j;
 
 	for(j=0;j<YM;j++){
@@ -49,4 +69,14 @@ int *massiv(int XM, int YM, int **dynWorld){
 	dynWorld[4][3]=5;
 
 	return *dynWorld;
+}
+
+int *ClearMemory(int XM, int YM, int **dynWorld)
+{
+    int i;
+    
+    for(i=0;i<XM;i++)free(dynWorld[i]);
+    free((void *)dynWorld);
+
+    return 0;
 }
