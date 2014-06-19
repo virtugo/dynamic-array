@@ -78,5 +78,5 @@ int *ClearMemory(int XM, int YM, int **dynWorld)
     for(i=0;i<XM;i++)free(dynWorld[i]);
     free((void *)dynWorld);
 
-    return 0;
+    return *dynWorld;
 }
