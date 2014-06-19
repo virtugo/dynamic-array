@@ -5,8 +5,8 @@
 #define SIZEY 20
 
 int *FillArray(int, int, int**); // заполняет массив
-int DynamicToStatic(int stWorld[SIZEX][SIZEY], int, int, int**);
-int PrintArray(int stWorld[SIZEX][SIZEY]);
+int DynamicToStatic(int stWorld[][SIZEY], int, int, int**);
+int PrintArray(int stWorld[][SIZEY]);
 int *ClearMemory(int, int, int**); // очищаем память
 
 // ============================= MAIN ================================
@@ -51,7 +51,7 @@ int *FillArray(int XM, int YM, int **dynWorld)
     return *dynWorld;
 }
 
-int DynamicToStatic(int stWorld[SIZEX][SIZEY], int sdvig, int YM, int **dynWorld)
+int DynamicToStatic(int stWorld[][SIZEY], int sdvig, int YM, int **dynWorld)
 {
     int i,j;
 
@@ -62,7 +62,7 @@ int DynamicToStatic(int stWorld[SIZEX][SIZEY], int sdvig, int YM, int **dynWorld
     }
 }
 
-int PrintArray(int stWorld[SIZEX][SIZEY])
+int PrintArray(int stWorld[][SIZEY])
 {
     int i,j;
     for(j=0;j<SIZEY;j++){
