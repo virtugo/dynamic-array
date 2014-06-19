@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZEX 25// размеры массива для вывода на экран
+// размеры массива для вывода на экран
+#define SIZEX 25
 #define SIZEY 20
 
 int *FillArray(int, int, int**); // заполняет массив
