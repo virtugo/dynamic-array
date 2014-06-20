@@ -1,3 +1,6 @@
+// buggy output
+// виноват graphics.h
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <graphics.h>
